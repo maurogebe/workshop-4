@@ -11,10 +11,9 @@ public class HtmlValidator {
 		Stack<HtmlTag> openTags = new Stack<>();
 
 		for (HtmlTag tag : tags) {
-			if(tag.isSelfClosing()) {
-			} else if(tag.isOpenTag()) {
+			if(tag.isOpenTag()) {
 				openTags.add(tag);
-			} else {
+			} else if(!tag.isSelfClosing()) {
 				if(!openTags.isEmpty() && openTags.peek().matches(tag)) {
 					openTags.pop();
 				} else {
